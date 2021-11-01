@@ -1,0 +1,30 @@
+{
+  "name": "webflow-statsig",
+  "version": "0.1.0",
+  "description": "Integrate Statsig Feature gates for gating webflow tabs",
+  "main": "dist/statsigWebflow.js",
+  "scripts": {
+    "prepare": "rm -rf build/ && rm -rf dist/ && tsc"
+  },
+  "files": [
+    "dist/statsigWebflow.js"
+  ],
+  "jsdelivr": "dist/statsigWebflow.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:statsig-io/webflowAdapter.git"
+  },
+  "author": "Statsig, Inc.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/statsig-io/webflowAdapter/issues"
+  },
+  "keywords": [
+    "feature gate",
+    "feature flag",
+    "continuous deployment",
+    "webflow",
+    "ab test"
+  ],
+  "homepage": "https://www.statsig.com"
+}
