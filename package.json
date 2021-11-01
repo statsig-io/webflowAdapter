@@ -1,5 +1,5 @@
 {
-  "name": "statsig-webflow",
+  "name": "webflow-statsig",
   "version": "0.1.0",
   "description": "Integrate Statsig Feature gates for gating webflow tabs",
   "main": "dist/statsigWebflow.js",
