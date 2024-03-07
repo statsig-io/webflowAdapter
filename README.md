@@ -33,4 +33,5 @@ https://github.com/statsig-io/webflowAdapter/assets/111380336/7332f46c-8591-417c
 6. Publish and test the page! Changing the gate's targeting should be reflected in the experience when you refresh the page.
 
 TIP: To properly run split assignments, make sure your Feature Gate uses `Stable ID` in order to treat your page visitors as unique users.
+
 ![image](https://github.com/statsig-io/webflowAdapter/assets/111380336/1b56747c-f075-4b9e-8c24-ce4ed9efb135)
