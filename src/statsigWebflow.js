@@ -2,18 +2,23 @@ window["StatsigWebflowAdapter"] = window["StatsigWebflowAdapter"] || {
   addSdkScriptTag: function() {
     const script = document.createElement('script');
     script.setAttribute('id', 'statsigSdk');
-    script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/statsig-js@4.4.0/build/statsig-prod-web-sdk.min.js');
+    script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/statsig-js@4.50.0/build/statsig-prod-web-sdk.min.js');
     document.head.appendChild(script);
   },
 
   applyStatsigConfigToTab: function(tab) {
     const gateId = tab.dataset.gateid;
-    if (statsig.checkGate(gateId)) {
-      tab.children[1].click();
-    } else {
-      tab.children[0].click();
+    const tabContent = tab.children[0];
+    if (tabContent.children.length < 2) {
+      return;
     }
-    tab.nextElementSibling.style.display = 'unset';
+    if (statsig.checkGate(gateId)) {
+      tabContent.children[1].classList.add('w--tab-active');
+      tabContent.children[0].classList.remove('w--tab-active');
+    } else {
+      tabContent.children[0].classList.add('w--tab-active');
+      tabContent.children[1].classList.remove('w--tab-active');
+    }
   },
 
   applyStatsigConfigToDom: function() {
@@ -28,11 +33,7 @@ window["StatsigWebflowAdapter"] = window["StatsigWebflowAdapter"] || {
     const allTabs = document.querySelectorAll('div[data-gateid]');
     for (let ii = 0; ii < allTabs.length; ii++) {
       const tab = allTabs[ii];
-      if (tab.children.length >= 2) {
-        this.statsigTabs.push(tab);
-        tab.style.display = 'none';
-        tab.nextElementSibling.style.display = 'none';
-      }
+      this.statsigTabs.push(tab);
     }
   },
 
@@ -56,6 +57,7 @@ window["StatsigWebflowAdapter"] = window["StatsigWebflowAdapter"] || {
   initSDK: function() {
     const sdkKey = this.getSdkKey();
     if (!sdkKey) {
+      console.error('Missing Statsig SDK key');
       return false;
     }
 
